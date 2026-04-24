@@ -357,13 +357,13 @@ export default function App() {
     ];
 
     return (
-      <div className="flex flex-col gap-3 w-full max-w-lg mx-auto py-4">
+      <div className="flex flex-col gap-1.5 md:gap-2.5 w-full max-w-lg mx-auto h-full justify-center py-2">
         {rows.map((row, rowIndex) => (
-          <div key={rowIndex} className="flex justify-center gap-3">
+          <div key={rowIndex} className="flex justify-center gap-1.5 md:gap-2.5">
             {row.map((card) => {
               const globalIndex = cards.findIndex(c => c.id === card.id);
               return (
-                <div key={card.id} className="flex-1 max-w-[80px]">
+                <div key={card.id} className="flex-1 max-w-[60px] md:max-w-[80px]">
                   <Card 
                     card={card} 
                     onClick={() => handleCardClick(globalIndex)} 
@@ -473,74 +473,74 @@ export default function App() {
   }
 
   return (
-    <div className={`min-h-screen ${THEME.bg} p-4 md:p-8 flex flex-col items-center overflow-x-hidden`}>
+    <div className={`h-screen ${THEME.bg} p-2 md:p-6 flex flex-col items-center overflow-hidden`}>
       {/* Header Stats */}
-      <div className="w-full max-w-2xl mb-8 flex flex-col md:flex-row gap-6 items-center justify-between">
+      <div className="w-full max-w-2xl mb-4 flex flex-col md:flex-row gap-4 items-center justify-between">
         <div className="flex flex-col items-center md:items-start">
-          <h1 className="text-3xl md:text-4xl font-black text-pink-600 tracking-tighter leading-none uppercase">
+          <h1 className="text-2xl md:text-3xl font-black text-pink-600 tracking-tighter leading-none uppercase">
             Mocha & <span className="text-yellow-500">Muse</span>
           </h1>
-          <p className="text-[10px] font-black text-pink-400 mt-1 uppercase tracking-widest">Memory & Literature Cafe</p>
+          <p className="text-[10px] font-black text-pink-400 uppercase tracking-widest">Memory & Literature Cafe</p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="flex flex-wrap justify-center gap-3">
           <button 
             onClick={() => setIsMuted(!isMuted)}
-            className={`p-3 rounded-full shadow-lg transition-all border-4 ${isMuted ? 'bg-white text-pink-300 border-pink-100' : 'bg-pink-500 text-white border-pink-400'}`}
+            className={`p-2 rounded-full shadow-lg transition-all border-4 ${isMuted ? 'bg-white text-pink-300 border-pink-100' : 'bg-pink-500 text-white border-pink-400'}`}
           >
-            {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+            {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
           </button>
           {gameType === 'single' ? (
             <>
-              <div className="bg-pink-500 text-white px-6 py-2 rounded-3xl shadow-lg flex flex-col items-center min-w-[120px] border-4 border-pink-400">
-                <span className="text-[9px] uppercase font-black opacity-80 tracking-widest">Current Score</span>
-                <span className="text-xl font-black">{score}</span>
+              <div className="bg-pink-500 text-white px-4 py-1.5 rounded-2xl shadow-lg flex flex-col items-center min-w-[100px] border-4 border-pink-400">
+                <span className="text-[8px] uppercase font-black opacity-80 tracking-widest">Score</span>
+                <span className="text-lg font-black">{score}</span>
               </div>
             </>
           ) : (
             <>
-              <div className={`px-6 py-2 rounded-3xl shadow-lg flex flex-col items-center min-w-[120px] border-4 transition-all ${currentPlayer === 1 ? 'bg-pink-500 text-white border-pink-400 scale-110 z-10' : 'bg-white text-pink-300 border-pink-100'}`}>
-                <span className="text-[9px] uppercase font-black opacity-80 tracking-widest">P1 Score</span>
-                <span className="text-xl font-black">{player1Score}</span>
+              <div className={`px-4 py-1.5 rounded-2xl shadow-lg flex flex-col items-center min-w-[100px] border-4 transition-all ${currentPlayer === 1 ? 'bg-pink-500 text-white border-pink-400 scale-105 z-10' : 'bg-white text-pink-300 border-pink-100'}`}>
+                <span className="text-[8px] uppercase font-black opacity-80 tracking-widest">P1</span>
+                <span className="text-lg font-black">{player1Score}</span>
               </div>
-              <div className={`px-6 py-2 rounded-3xl shadow-lg flex flex-col items-center min-w-[120px] border-4 transition-all ${currentPlayer === 2 ? 'bg-yellow-400 text-pink-900 border-yellow-300 scale-110 z-10' : 'bg-white text-yellow-600 opacity-50 border-yellow-200'}`}>
-                <span className="text-[9px] uppercase font-black opacity-80 tracking-widest">{gameType === 'pvc' ? 'AI' : 'P2'} Score</span>
-                <span className="text-xl font-black">{player2Score}</span>
+              <div className={`px-4 py-1.5 rounded-2xl shadow-lg flex flex-col items-center min-w-[100px] border-4 transition-all ${currentPlayer === 2 ? 'bg-yellow-400 text-pink-900 border-yellow-300 scale-105 z-10' : 'bg-white text-yellow-600 opacity-50 border-yellow-200'}`}>
+                <span className="text-[8px] uppercase font-black opacity-80 tracking-widest">{gameType === 'pvc' ? 'AI' : 'P2'}</span>
+                <span className="text-lg font-black">{player2Score}</span>
               </div>
             </>
           )}
-          <div className="bg-yellow-400 text-pink-900 px-6 py-2 rounded-3xl shadow-lg flex flex-col items-center min-w-[120px] border-4 border-yellow-300">
-            <span className="text-[9px] uppercase font-black opacity-80 tracking-widest">Pairs Found</span>
-            <span className="text-xl font-black">{cards.filter(c => c.isMatched).length / 2} / 11</span>
+          <div className="bg-yellow-400 text-pink-900 px-4 py-1.5 rounded-2xl shadow-lg flex flex-col items-center min-w-[100px] border-4 border-yellow-300">
+            <span className="text-[8px] uppercase font-black opacity-80 tracking-widest">Pairs</span>
+            <span className="text-lg font-black">{cards.filter(c => c.isMatched).length / 2} / 11</span>
           </div>
         </div>
       </div>
 
-      <div className="w-full max-w-2xl flex flex-col md:flex-row gap-4 mb-8">
-        <div className="flex-1 bg-white border-2 border-pink-200 rounded-3xl p-4 flex items-center justify-between shadow-sm">
+      <div className="w-full max-w-2xl flex flex-col md:flex-row gap-3 mb-4">
+        <div className="flex-1 bg-white border-2 border-pink-200 rounded-2xl p-3 flex items-center justify-between shadow-sm">
            <div className="flex flex-col">
-              <span className="text-[10px] text-pink-400 font-black uppercase tracking-widest">Selected Mode</span>
-              <span className="text-xs font-black text-pink-600 uppercase">{mode}</span>
+              <span className="text-[8px] text-pink-400 font-black uppercase tracking-widest">Mode</span>
+              <span className="text-[10px] font-black text-pink-600 uppercase">{mode}</span>
            </div>
-           <div className="h-8 w-px bg-pink-100"></div>
+           <div className="h-6 w-px bg-pink-100"></div>
            <div className="flex flex-col text-center">
-              <span className="text-[10px] text-pink-400 font-black uppercase tracking-widest">Players</span>
-              <span className="text-xs font-black text-pink-600 uppercase">{gameType === 'pvc' ? 'Player vs AI' : gameType}</span>
+              <span className="text-[8px] text-pink-400 font-black uppercase tracking-widest">Players</span>
+              <span className="text-[10px] font-black text-pink-600 uppercase">{gameType === 'pvc' ? 'AI' : gameType}</span>
            </div>
-           <div className="h-8 w-px bg-pink-100"></div>
+           <div className="h-6 w-px bg-pink-100"></div>
            <div className="flex flex-col text-right">
-              <span className="text-[10px] text-pink-400 font-black uppercase tracking-widest">Turn</span>
-              <span className={`text-xs font-black uppercase ${currentPlayer === 1 ? 'text-pink-600' : 'text-yellow-600'}`}>
-                {currentPlayer === 1 ? 'P1\'s Round' : gameType === 'pvc' ? 'AI Thinking' : 'P2\'s Round'}
+              <span className="text-[8px] text-pink-400 font-black uppercase tracking-widest">Turn</span>
+              <span className={`text-[10px] font-black uppercase ${currentPlayer === 1 ? 'text-pink-600' : 'text-yellow-600'}`}>
+                {currentPlayer === 1 ? 'P1' : gameType === 'pvc' ? 'AI' : 'P2'}
               </span>
            </div>
         </div>
 
         {gameType === 'single' && (
-          <div className="bg-white border-2 border-yellow-200 rounded-3xl p-4 flex items-center gap-8 shadow-sm px-8">
+          <div className="bg-white border-2 border-yellow-200 rounded-2xl p-3 flex items-center gap-6 shadow-sm px-6">
             <div className="text-center">
-              <span className="block text-[10px] text-yellow-600 font-black uppercase tracking-widest">Moves Left</span>
-              <span className={`text-2xl font-black ${TURN_LIMITS[difficulty] ? 'text-pink-500' : 'text-yellow-500'}`}>
+              <span className="block text-[8px] text-yellow-600 font-black uppercase tracking-widest">Moves Left</span>
+              <span className={`text-xl font-black ${TURN_LIMITS[difficulty] ? 'text-pink-500' : 'text-yellow-500'}`}>
                 {TURN_LIMITS[difficulty] ? TURN_LIMITS[difficulty] - moves : moves}
               </span>
             </div>
@@ -549,30 +549,30 @@ export default function App() {
       </div>
 
       {/* Grid */}
-      <div className="flex-1 w-full flex items-center justify-center">
+      <div className="flex-1 w-full flex items-center justify-center overflow-hidden">
         {renderGrid()}
       </div>
 
       {/* Footer Controls */}
-      <footer className="w-full max-w-2xl flex justify-between items-center py-8 mt-4 border-t border-pink-100">
-        <div className="flex gap-4">
+      <footer className="w-full max-w-2xl flex justify-between items-center py-4 mt-2 border-t border-pink-100">
+        <div className="flex gap-3">
           <button 
             onClick={initGame}
-            className={`${THEME.buttonYellow} px-6 py-3 text-xs active:scale-90 transition-transform`}
+            className={`${THEME.buttonYellow} px-4 py-2 text-[10px] active:scale-90 transition-transform`}
           >
-            <RotateCcw size={14} className="inline mr-2" /> RE-BREW
+            <RotateCcw size={12} className="inline mr-1" /> RE-BREW
           </button>
           <button 
             onClick={() => setGameStarted(false)}
-            className="bg-white border border-pink-200 px-6 py-3 rounded-2xl text-xs font-black text-pink-400 hover:border-pink-300 transition-colors active:scale-95 shadow-sm uppercase tracking-widest"
+            className="bg-white border border-pink-200 px-4 py-2 rounded-xl text-[10px] font-black text-pink-400 hover:border-pink-300 transition-colors active:scale-95 shadow-sm uppercase tracking-widest"
           >
-            <SettingsIcon size={14} className="inline mr-2" /> SETTINGS
+            <SettingsIcon size={12} className="inline mr-1" /> SETTINGS
           </button>
         </div>
-        <div className="hidden sm:flex gap-2">
-          <div className="w-3 h-3 bg-pink-500 rounded-full"></div>
-          <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-          <div className="w-3 h-3 bg-pink-300 rounded-full"></div>
+        <div className="hidden sm:flex gap-1.5">
+          <div className="w-2 h-2 bg-pink-500 rounded-full"></div>
+          <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+          <div className="w-2 h-2 bg-pink-300 rounded-full"></div>
         </div>
       </footer>
 
